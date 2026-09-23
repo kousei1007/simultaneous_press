@@ -3,7 +3,7 @@
 表示された 3〜10 文字を **0.5 秒以内にまとめて押し切る**、60 秒間のスコアアタック。
 
 - フロントエンド: TypeScript / Next.js (App Router) / Tailwind CSS
-- アイコン: [Lucide](https://lucide.dev)（絵文字は不使用）
+- アイコン: [Lucide](https://lucide.dev)
 - スコア保存: Supabase（未設定時は localStorage にフォールバック）
 
 ## セットアップ
@@ -103,7 +103,7 @@ shared/                       機能をまたぐもの（ModeSize, formatSeconds
 ### UI
 
 Material Design 3 のカラーロール（surface / primary / secondary / tertiary / error のトーナルパレット）を `app/globals.css` の CSS 変数として定義し、Tailwind のカラーとして公開している。
-カード類は M3 の filled card（surface-container 系の塗り + elevation）で構成し、border-left のアクセントカードは使用していない。ボタンのタップ領域・角丸・state layer は M3 / HIG のガイドラインに合わせてある。
+カード類は M3 の filled card（surface-container 系の塗り + elevation）で構成している。ボタンのタップ領域・角丸・state layer は M3 / HIG のガイドラインに合わせてある。
 
 ## 既知の制約
 
