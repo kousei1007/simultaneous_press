@@ -11,6 +11,8 @@ import { fetchTopScores, submitScore } from "@/features/ranking/scoreRepository"
 import { loadPlayerName, savePlayerName } from "@/features/ranking/playerName";
 import type { ScoreEntry } from "@/features/ranking/types";
 import { isSupabaseConfigured } from "@/shared/supabase";
+import { useIsPc } from "@/shared/useIsPc";
+import { DeviceBlockScreen } from "@/shared/components/DeviceBlockScreen";
 import type { ModeSize, Phase } from "@/shared/types";
 
 type FinalResult = {
@@ -35,6 +37,7 @@ export default function Page() {
 
   const { state, flash, start, stop } = useGame(mode);
   const submittedRef = useRef(false);
+  const isPc = useIsPc();
 
   /* 初期化: 登録済みなら復元、未登録なら登録画面へ */
   useEffect(() => {
@@ -110,6 +113,15 @@ export default function Page() {
   const handleQuit = useCallback(() => {
     stop();
   }, [stop]);
+
+  // PC 以外からはプレイさせない（同時押しが成立しないため）
+  if (isPc === false) {
+    return (
+      <main className="mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
+        <DeviceBlockScreen />
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
