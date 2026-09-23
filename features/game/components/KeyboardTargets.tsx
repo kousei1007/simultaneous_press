@@ -16,9 +16,10 @@ export function KeyboardTargets({ targets, pressed, windowProgress, shakeKey }: 
 
   return (
     <div className="flex flex-col items-center gap-6">
+      {/* 10 文字でも折り返さないよう、チップは幅を分け合って縮む */}
       <div
         key={shakeKey}
-        className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+        className="flex w-full items-center justify-center gap-2 sm:gap-3"
       >
         {targets.map((key) => {
           const isPressed = pressedSet.has(key);
@@ -26,7 +27,7 @@ export function KeyboardTargets({ targets, pressed, windowProgress, shakeKey }: 
             <div
               key={key}
               className={[
-                "relative flex size-16 items-center justify-center rounded-lg border-2 text-3xl font-semibold tabular-nums transition-colors duration-100 sm:size-20 sm:text-4xl",
+                "relative flex aspect-square min-w-0 max-w-[5rem] flex-1 items-center justify-center rounded-lg border-2 text-[clamp(1.5rem,5vw,2.25rem)] font-semibold tabular-nums transition-colors duration-100",
                 isPressed
                   ? "animate-key-pop border-primary bg-primary text-on-primary shadow-elev-2"
                   : "border-outline-variant bg-surface-container text-on-surface",
