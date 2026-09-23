@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Material Design 3 light color scheme
+ * Material Theme Builder の "plantcare" スキーム（セージグリーン + テラコッタ）に合わせたトーナルロール。
+ */
+:root {
+  --m3-primary: 46 93 52;
+  --m3-on-primary: 255 255 255;
+  --m3-primary-container: 165 232 160;
+  --m3-on-primary-container: 6 33 10;
+
+  --m3-secondary: 82 99 79;
+  --m3-secondary-container: 213 232 206;
+  --m3-on-secondary-container: 17 31 15;
+
+  --m3-tertiary: 180 70 42;
+  --m3-tertiary-container: 245 207 196;
+  --m3-on-tertiary-container: 61 12 2;
+
+  --m3-error: 186 26 26;
+  --m3-error-container: 255 218 214;
+  --m3-on-error-container: 65 0 2;
+
+  --m3-surface: 227 232 225;
+  --m3-surface-container-low: 252 250 245;
+  --m3-surface-container: 238 241 234;
+  --m3-surface-container-high: 228 233 224;
+  --m3-surface-container-highest: 215 222 211;
+  --m3-on-surface: 26 28 25;
+  --m3-on-surface-variant: 66 73 64;
+
+  --m3-outline: 114 121 111;
+  --m3-outline-variant: 194 201 189;
+
+  --font-sans: var(--font-inter), ui-sans-serif, -apple-system, "Segoe UI",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  --font-display: var(--font-fraunces), "Hiragino Mincho ProN", "Yu Mincho",
+    Georgia, serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-surface text-on-surface antialiased;
+  background-image: radial-gradient(
+      1200px 600px at 50% -20%,
+      rgb(var(--m3-primary) / 0.08),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 500px at 110% 110%,
+      rgb(var(--m3-tertiary) / 0.07),
+      transparent 70%
+    );
+  background-attachment: fixed;
+}
+
+/* Material 3 の state layer を模した共通ホバー/フォーカス */
+.m3-state-layer {
+  position: relative;
+  isolation: isolate;
+}
+.m3-state-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+.m3-state-layer:hover::after {
+  opacity: 0.08;
+}
+.m3-state-layer:active::after {
+  opacity: 0.12;
+}
+
+:where(button, a, input, select):focus-visible {
+  outline: 3px solid rgb(var(--m3-primary) / 0.7);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

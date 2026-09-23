@@ -1,0 +1,22 @@
+# 依存関係
+node_modules/
+
+# ビルド成果物・キャッシュ
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# 環境変数（.env.local.example 以外はすべて除外）
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# 自動生成
+next-env.d.ts
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+*.log
